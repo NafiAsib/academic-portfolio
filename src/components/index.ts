@@ -1,0 +1,11 @@
+export { default as Education } from "./education.tsx";
+export { default as Publications } from "./publications.tsx";
+export { default as RecentNews } from "./recent-news.tsx";
+export { default as Experience } from "./experiences.tsx";
+export { default as Header } from "./header.tsx";
+export { default as Hero } from "./hero.tsx";
+export { default as Awards } from "./awards.tsx";
+export { default as Contact } from "./contact.tsx";
+export { default as ResearchInterests } from "./research-interests.tsx";
+export { default as SocialLinks } from "./social-links.tsx";
+export { default as VolunteerExperiences } from "./volunteer-experiences.tsx";
