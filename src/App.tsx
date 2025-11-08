@@ -1,7 +1,7 @@
-import Education from "./components/education";
-import Publications from "./components/publications";
-import RecentNews from "./components/recent-news";
-import Experience from "./components/experiences";
+import Education from "./components/education.tsx";
+import Publications from "./components/publications.tsx";
+import RecentNews from "./components/recent-news.tsx";
+import Experience from "./components/experiences.tsx";
 import {
   personal,
   education,
@@ -10,8 +10,8 @@ import {
   experience,
   utils,
 } from "./data/portfolioData";
-import Header from "./components/header";
-import Hero from "./components/hero";
+import Header from "./components/header.tsx";
+import Hero from "./components/hero.tsx";
 
 function App() {
   return (
