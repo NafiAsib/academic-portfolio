@@ -6,32 +6,55 @@ interface ContactProps {
 
 export default function Contact({ contact }: ContactProps) {
   return (
-    <section className="section">
-      <h2>Contact</h2>
-      <div className="contact-info">
-        <p>
-          <strong>Email:</strong> {contact.email}
+    <section className="mb-16">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-8 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-gray-900">
+        Contact
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <p className="mb-2 text-sm text-gray-700">
+          <strong className="text-gray-900 inline-block w-24 font-semibold">
+            Email:
+          </strong>
+          {contact.email}
         </p>
-        <p>
-          <strong>Office:</strong> {contact.office}
+        <p className="mb-2 text-sm text-gray-700">
+          <strong className="text-gray-900 inline-block w-24 font-semibold">
+            Office:
+          </strong>
+          {contact.office}
         </p>
-        <p>
-          <strong>Address:</strong> {contact.address}
+        <p className="mb-2 text-sm text-gray-700">
+          <strong className="text-gray-900 inline-block w-24 font-semibold">
+            Address:
+          </strong>
+          {contact.address}
         </p>
-        <p>
-          <strong>LinkedIn:</strong> {contact.linkedin}
+        <p className="mb-2 text-sm text-gray-700">
+          <strong className="text-gray-900 inline-block w-24 font-semibold">
+            LinkedIn:
+          </strong>
+          {contact.linkedin}
         </p>
-        <p>
-          <strong>Google Scholar:</strong> {contact.scholar}
+        <p className="mb-2 text-sm text-gray-700">
+          <strong className="text-gray-900 inline-block w-24 font-semibold">
+            Scholar:
+          </strong>
+          {contact.scholar}
         </p>
         {contact.website && (
-          <p>
-            <strong>Website:</strong> {contact.website}
+          <p className="mb-2 text-sm text-gray-700">
+            <strong className="text-gray-900 inline-block w-24 font-semibold">
+              Website:
+            </strong>
+            {contact.website}
           </p>
         )}
         {contact.orcid && (
-          <p>
-            <strong>ORCID:</strong> {contact.orcid}
+          <p className="mb-2 text-sm text-gray-700">
+            <strong className="text-gray-900 inline-block w-24 font-semibold">
+              ORCID:
+            </strong>
+            {contact.orcid}
           </p>
         )}
       </div>

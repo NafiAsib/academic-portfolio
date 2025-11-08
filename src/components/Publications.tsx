@@ -1,55 +1,46 @@
+import { BracesIcon, DatabaseIcon, StickyNoteIcon } from "lucide-react";
 import type { Publication } from "../data/portfolioData";
 
 interface PublicationsProps {
   publications: Publication[];
 }
 
-// SVG Icons for badges
-const PaperIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-  </svg>
-);
-
-const CodeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z" />
-  </svg>
-);
-
-const DataIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z" />
-  </svg>
-);
-
 export default function Publications({ publications }: PublicationsProps) {
   return (
-    <section className="section">
-      <h2>Publications</h2>
+    <section className="mb-16">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-8 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-0.5 after:bg-gray-900">
+        Publications
+      </h2>
       {publications.map((pub, index) => (
-        <div key={index} className="publication">
-          <h3>{pub.title}</h3>
+        <div
+          key={index}
+          className="mb-8 pb-7 border-b border-gray-100 last:border-b-0"
+        >
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-snug">
+            {pub.title}
+          </h3>
           <p
-            className="authors"
+            className="text-sm text-gray-600 mb-1 [&_strong]:text-gray-900"
             dangerouslySetInnerHTML={{ __html: pub.authors }}
           />
-          <p className="venue">
-            <em>{pub.venue}</em>
+          <p className="text-sm text-gray-500 italic mb-3">
+            <em
+              className="dynamic-content"
+              dangerouslySetInnerHTML={{ __html: pub.venue }}
+            />{" "}
+            | {pub.year}
           </p>
-          <p className="year">{pub.year}</p>
 
-          {/* Publication Badges */}
           {(pub.pdf || pub.code || pub.data) && (
-            <div className="publication-badges">
+            <div className="flex gap-2 flex-wrap">
               {pub.pdf && (
                 <a
                   href={pub.pdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="publication-badge paper"
+                  className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium no-underline rounded-xl transition-all duration-200 border bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-800 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <PaperIcon />
+                  <StickyNoteIcon className="w-3 h-3" />
                   Paper
                 </a>
               )}
@@ -59,9 +50,9 @@ export default function Publications({ publications }: PublicationsProps) {
                   href={pub.code}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="publication-badge code"
+                  className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium no-underline rounded-xl transition-all duration-200 border bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-800 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <CodeIcon />
+                  <BracesIcon className="w-3 h-3" />
                   Code
                 </a>
               )}
@@ -71,9 +62,9 @@ export default function Publications({ publications }: PublicationsProps) {
                   href={pub.data}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="publication-badge data"
+                  className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium no-underline rounded-xl transition-all duration-200 border bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400 hover:text-gray-800 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <DataIcon />
+                  <DatabaseIcon className="w-3 h-3" />
                   Data
                 </a>
               )}

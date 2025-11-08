@@ -1,4 +1,3 @@
-// Type definitions for better type safety and IDE support
 export interface PersonalInfo {
   name: string;
   title: string;
@@ -12,27 +11,24 @@ export interface EducationItem {
   degree: string;
   institution: string;
   date: string;
-  description: string;
-  gpa?: string; // Optional, can be extracted from description
-  location?: string; // Optional for future use
+  gpa: string;
+  lastFourSemestersCGPA?: string;
+  thesis?: string;
+  coursework?: string[];
+  extracurricular?: string[];
+  location?: string;
 }
 
 export interface Publication {
   title: string;
-  authors: string; // HTML string with bold names
+  authors: string;
   venue: string;
   year: string;
-  doi?: string; // Optional for future use
-  pdf?: string; // Optional for future use
-  code?: string; // Optional code repository link
-  data?: string; // Optional dataset link
-  type?: "conference" | "journal" | "workshop" | "preprint"; // Optional categorization
-}
-
-export interface Award {
-  title: string;
-  year?: string; // Optional, can be extracted from title
-  organization?: string; // Optional for future use
+  doi?: string;
+  pdf?: string;
+  code?: string;
+  data?: string;
+  type?: "conference" | "journal" | "workshop" | "preprint";
 }
 
 export interface ContactInfo {
@@ -41,10 +37,34 @@ export interface ContactInfo {
   address: string;
   linkedin: string;
   scholar: string;
-  github?: string; // Added GitHub
-  website?: string; // Optional for personal website
-  orcid?: string; // Optional for ORCID ID
-  twitter?: string; // Optional for social media
+  github?: string;
+  website?: string;
+  orcid?: string;
+  twitter?: string;
+}
+
+export interface NewsItem {
+  date: string;
+  content: string;
+}
+
+export interface ExperienceItem {
+  position: string;
+  company: string;
+  date: string;
+  location?: string;
+  description?: string;
+  technologies?: string[];
+  link?: string;
+}
+
+export interface VolunteerItem {
+  role: string;
+  organization: string;
+  date: string;
+  location?: string;
+  description: string;
+  achievements?: string[];
 }
 
 export interface SectionConfig {
@@ -54,24 +74,25 @@ export interface SectionConfig {
   order: number;
 }
 
-// Main portfolio data structure
 export interface PortfolioData {
   personal: PersonalInfo;
   education: EducationItem[];
   researchInterests: string[];
   publications: Publication[];
-  awards: Award[];
   contact: ContactInfo;
-  sections: SectionConfig[]; // Controls which sections to show and their order
+  news: NewsItem[];
+  experience: ExperienceItem[];
+  volunteer: VolunteerItem[];
+  sections: SectionConfig[];
 }
 
-// The centralized data - Update this with your information
 export const portfolioData: PortfolioData = {
   personal: {
     name: "K M Nafi Asib",
     title: "Software Engineer & Researcher",
     about:
       "I'm a researcher and software engineer with a deep interest in Computer Vision, Natural Language Processing, and Large Language Models. I completed my undergraduate thesis under <a href='https://scholar.google.com/citations?user=du_bCPIAAAAJ&hl=en' target='_blank' rel='noopener noreferrer'>Dr. Kaushik Deb</a>, where I worked on deep learning approaches for Bangla sign language recognition. Since then, I've been drawn to challenges in low-resource language processing and the broader questions of LLM interpretability, efficient large-scale training, and reinforcement learning for model alignment. Beyond research, I've spent several years as a software engineer, building reliable, production-grade systems. <br/><br/>I'm actively seeking PhD opportunities that bridges my engineering experience with advanced, exploratory research in intelligent and interpretable AI systems.",
+    profileImage: "/nafi-asib.jpg",
     blog: "https://blog.nafiasib.com",
     cv: "https://drive.google.com/file/d/1A8ytOwTeAZDcXmETbWSYQRqYIJuIUrFi/view?usp=sharing",
   },
@@ -79,16 +100,34 @@ export const portfolioData: PortfolioData = {
   education: [
     {
       degree: "BSc in Computer Science and Engineering",
-      institution: "Chittagong University of Engineering & Technology",
-      date: "2018 - 2023",
-      description:
-        "GPA: 3.12/4.0 | Thesis: 'Recognition of Static Bangla Sign Language Words using Deep Learning' ",
+      institution:
+        "<a href='https://cuet.ac.bd/' target='_blank' rel='noopener noreferrer'>Chittagong University of Engineering & Technology</a>",
+      date: "Jan 2018 - Aug 2023",
+      gpa: "CGPA <strong>3.12</strong>/4.0 (Last four semesters avg: <strong>3.35</strong>/4.0)",
+      lastFourSemestersCGPA: "3.35/4.0",
+      thesis:
+        "Recognition of Static Bangla Sign Language Words using Deep Learning",
+      coursework: [
+        "Digital Image Processing",
+        "Artificial Intelligence",
+        "Discrete Mathematics",
+        "Applied Statistics and Queuing Theory",
+        "Object-Oriented Programming",
+        "Data Structures and Algorithms",
+        "Database Systems",
+        "Digital Systems Design",
+      ],
+      extracurricular: [
+        "Development Co-ordinator - CUET Computer Club (Aug 2022 - Aug 2023)",
+        "Publication and Research Secretary - Robo Mechatronics Association (RMABD) (Aug 2022 - Sep 2023)",
+      ],
     },
     {
       degree: "Higher Secondary School Certificate (HSC)",
-      institution: "St. Joseph Higher Secondary School, Dhaka",
+      institution:
+        "<a href='https://sjs.edu.bd/new/index.php' target='_blank' rel='noopener noreferrer'>St. Joseph Higher Secondary School, Dhaka</a>",
       date: "2015 - 2017",
-      description: "GPA: 5.00/5.00",
+      gpa: "GPA <strong>5.00</strong>/5.00",
     },
   ],
 
@@ -105,23 +144,24 @@ export const portfolioData: PortfolioData = {
     {
       title:
         "Retriv at BLP-2025 Task 2: Test-Driven Feedback-Guided Framework for Bangla-to-Python Code Generation",
-      authors: "<strong>K M Nafi Asib</strong>, Sourav Saha, M Moshiul Hoqueh",
-      venue: "In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL",
+      authors: "<strong>K M Nafi Asib</strong>, Sourav Saha, M Moshiul Hoque",
+      venue:
+        "<a href='https://blp-workshop.github.io/' target='_blank' rel='noopener noreferrer'>In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL</a>",
       year: "2025",
       type: "workshop",
       pdf: "https://example.com/paper1.pdf",
-      code: "https://github.com/NafiAsib/blp-task2",
-      data: "https://example.com/dataset1",
+      code: "https://github.com/NafiAsib/Retriv-BLP25-Task-2",
     },
     {
       title:
         "Retriv at BLP-2025 Task 1: A Transformer Ensemble and Multi-Task Learning Approach for Bangla Hate Speech Identification",
       authors: "Sourav Saha, <strong>K M Nafi Asib</strong>, M Moshiul Hoque",
-      venue: "In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL",
+      venue:
+        "<a href='https://blp-workshop.github.io/' target='_blank' rel='noopener noreferrer'>In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL</a>",
       year: "2025",
       type: "workshop",
       pdf: "https://example.com/paper2.pdf",
-      code: "https://github.com/NafiAsib/blp-task1",
+      code: "https://github.com/sahasourav17/Retriv-BLP25-Task-1",
     },
     {
       title:
@@ -131,15 +171,7 @@ export const portfolioData: PortfolioData = {
         "28th International Conference on Computer and Information Technology (ICCIT)",
       year: "2025",
       type: "conference",
-      pdf: "https://example.com/paper3.pdf",
     },
-  ],
-
-  awards: [
-    { title: "Dean's List for Academic Excellence (2023, 2024)" },
-    { title: "Best Final Year Project Award (2024)" },
-    { title: "University Scholarship for Outstanding Performance (2022-2024)" },
-    { title: "Programming Competition First Place (2023)" },
   ],
 
   contact: {
@@ -151,14 +183,87 @@ export const portfolioData: PortfolioData = {
     github: "github.com/NafiAsib",
   },
 
+  news: [
+    {
+      date: "Nov 2025",
+      content:
+        "Paper accepted on Code Generation with LLM at the BLP Workshop at IJCNLP-AACL 2025!",
+    },
+    {
+      date: "Nov 2025",
+      content:
+        "Paper accepted on Bangla Hate Speech Identification at the BLP Workshop at IJCNLP-AACL 2025!",
+    },
+    {
+      date: "Oct 2025",
+      content:
+        "1st Runner-up at <a href='https://noshinulfat.github.io/blp25_code_generation_task/#/home' target='_blank'>Code Generation in Bangla (Shared Task 2), BLP Workshop @IJCNLP-AACL 2025</a>",
+    },
+    {
+      date: "Oct 2025",
+      content:
+        "9th, 10th, 7th at <a href='https://github.com/AridHasan/blp25_task1?tab=readme-ov-file#leaderboard' target='_blank'>Hatespeech Identification (Shared Task 1A, 1B, 1C), BLP Workshop @IJCNLP-AACL 2025</a>",
+    },
+  ],
+
+  experience: [
+    {
+      position: "Software Engineer",
+      company: "Cantaloupe, Inc",
+      date: "Jun 2024 - Present",
+      location: "Malvern, Pennsylvania (Remote)",
+      link: "https://www.cantaloupe.com/",
+    },
+    {
+      position: "Associate Software Developer",
+      company: "The WOS Group GmbH",
+      date: "Nov 2022 - May 2024",
+      location: "Moenchengladbach, Germany (Remote)",
+      link: "https://thewos.com/",
+    },
+    {
+      position: "Associate Software Engineer",
+      company: "Brain Station 23 Ltd.",
+      date: "Nov 2021 - Nov 2022",
+      location: "Dhaka, Bangladesh",
+      link: "https://brainstation-23.com/",
+    },
+    {
+      position: "Frontend Developer",
+      company: "Dast Inc.",
+      date: "Dec 2020 - Jun 2021",
+      location: "Texas, USA (Remote)",
+    },
+  ],
+
+  volunteer: [
+    {
+      role: "Development Co-ordinator",
+      organization: "CUET Computer Club",
+      date: "Aug 2022 - Aug 2023",
+      description:
+        "Coordinated development activities and managed technical projects for the university computer club.",
+    },
+    {
+      role: "Publication and Research Secretary",
+      organization: "Robo Mechatronics Association (RMABD)",
+      date: "Aug 2022 - Sep 2023",
+      description:
+        "Managed publications and research activities for the robotics and mechatronics association.",
+    },
+  ],
+
   // Section configuration - controls which sections appear and their order
   sections: [
     { id: "about", title: "About", enabled: true, order: 1 },
-    { id: "education", title: "Education", enabled: true, order: 2 },
-    { id: "research", title: "Research Interests", enabled: true, order: 3 },
-    { id: "publications", title: "Publications", enabled: true, order: 4 },
-    { id: "awards", title: "Awards & Honors", enabled: true, order: 5 },
-    { id: "contact", title: "Contact", enabled: true, order: 6 },
+    { id: "news", title: "Recent News", enabled: true, order: 2 },
+    { id: "education", title: "Education", enabled: true, order: 3 },
+    { id: "experience", title: "Experience", enabled: true, order: 4 },
+    { id: "volunteer", title: "Volunteer Experience", enabled: true, order: 5 },
+    { id: "research", title: "Research Interests", enabled: true, order: 6 },
+    { id: "publications", title: "Publications", enabled: true, order: 7 },
+    { id: "awards", title: "Awards & Honors", enabled: true, order: 8 },
+    { id: "contact", title: "Contact", enabled: true, order: 9 },
   ],
 };
 
@@ -205,13 +310,14 @@ export const utils = {
   },
 };
 
-// Export individual sections for easy access
 export const {
   personal,
   education,
   researchInterests,
   publications,
-  awards,
   contact,
+  news,
+  experience,
+  volunteer,
   sections,
 } = portfolioData;
