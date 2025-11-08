@@ -3,6 +3,7 @@
 /* Global styles for smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Offset for sticky header */
 }
 
 /* Smooth underline effect for text links */
