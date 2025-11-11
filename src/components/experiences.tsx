@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import type { ExperienceItem } from "../data/portfolioData";
+import { utils } from "../data/portfolioData";
 
 interface ExperienceProps {
   experience: ExperienceItem[];
@@ -38,7 +39,9 @@ export default function ExperienceSection({ experience }: ExperienceProps) {
           {item.location && (
             <p className="text-sm text-gray-500 mb-1">{item.location}</p>
           )}
-          <p className="text-sm text-gray-400 mb-0">{item.date}</p>
+          <p className="text-sm text-gray-400 mb-0">
+            {utils.formatExperienceDateRange(item.date)}
+          </p>
           {item.description && (
             <p className="text-sm text-gray-600 leading-normal mt-2">
               {item.description}

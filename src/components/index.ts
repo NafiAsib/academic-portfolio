@@ -1,6 +1,7 @@
 export { default as Education } from "./education";
 export { default as Publications } from "./publications";
 export { default as RecentNews } from "./recent-news";
+export { default as Competitions } from "./competitions";
 export { default as Experience } from "./experiences";
 export { default as Header } from "./header";
 export { default as Hero } from "./hero";

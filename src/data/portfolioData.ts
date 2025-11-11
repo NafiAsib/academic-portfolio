@@ -36,7 +36,7 @@ export interface ContactInfo {
   office: string;
   address: string;
   linkedin: string;
-  scholar: string;
+  scholar?: string;
   github?: string;
   website?: string;
   orcid?: string;
@@ -48,10 +48,15 @@ export interface NewsItem {
   content: string;
 }
 
+export interface CompetitionItem {
+  date: string;
+  content: string;
+}
+
 export interface ExperienceItem {
   position: string;
   company: string;
-  date: string;
+  date: string; // DD/MM/YYYY - DD/MM/YYYY or DD/MM/YYYY - Present
   location?: string;
   description?: string;
   technologies?: string[];
@@ -95,6 +100,7 @@ export interface PortfolioData {
   publications: Publication[];
   contact: ContactInfo;
   news: NewsItem[];
+  competitions: CompetitionItem[];
   experience: ExperienceItem[];
   volunteer: VolunteerItem[];
   testScores: TestScore[];
@@ -194,8 +200,9 @@ export const portfolioData: PortfolioData = {
     office: "Available for virtual meetings",
     address: "City, Country (Available for relocation)",
     linkedin: "linkedin.com/in/nafiasib",
-    scholar: "scholar.google.com/citations?user=nafiasib",
+    // scholar: "scholar.google.com/citations?user=nafiasib",
     github: "github.com/NafiAsib",
+    twitter: "twitter.com/nafiasib",
   },
 
   news: [
@@ -209,15 +216,18 @@ export const portfolioData: PortfolioData = {
       content:
         "Paper accepted on Bangla Hate Speech Identification at the BLP Workshop at IJCNLP-AACL 2025!",
     },
+  ],
+
+  competitions: [
     {
       date: "Oct 2025",
       content:
-        "1st Runner-up at <a href='https://noshinulfat.github.io/blp25_code_generation_task/#/home' target='_blank'>Code Generation in Bangla (Shared Task 2), BLP Workshop @IJCNLP-AACL 2025</a>",
+        "<strong>1st Runner-up</strong> at <a href='https://noshinulfat.github.io/blp25_code_generation_task/#/home' target='_blank'>Code Generation in Bangla (Shared Task 2), BLP Workshop @IJCNLP-AACL 2025</a>",
     },
     {
       date: "Oct 2025",
       content:
-        "9th, 10th, 7th at <a href='https://github.com/AridHasan/blp25_task1?tab=readme-ov-file#leaderboard' target='_blank'>Hatespeech Identification (Shared Task 1A, 1B, 1C), BLP Workshop @IJCNLP-AACL 2025</a>",
+        "<strong>9th, 10th, 7th</strong> at <a href='https://github.com/AridHasan/blp25_task1?tab=readme-ov-file#leaderboard' target='_blank'>Hatespeech Identification (Shared Task 1A, 1B, 1C), BLP Workshop @IJCNLP-AACL 2025</a>",
     },
   ],
 
@@ -225,28 +235,28 @@ export const portfolioData: PortfolioData = {
     {
       position: "Software Engineer",
       company: "Cantaloupe, Inc",
-      date: "Jun 2024 - Present",
+      date: "01/06/2024 - Present",
       location: "Malvern, Pennsylvania (Remote)",
       link: "https://www.cantaloupe.com/",
     },
     {
       position: "Associate Software Developer",
       company: "The WOS Group GmbH",
-      date: "Nov 2022 - May 2024",
+      date: "15/11/2022 - 31/06/2024",
       location: "Moenchengladbach, Germany (Remote)",
       link: "https://thewos.com/",
     },
     {
       position: "Associate Software Engineer",
       company: "Brain Station 23 Ltd.",
-      date: "Nov 2021 - Nov 2022",
+      date: "01/11/2021 - 30/11/2022",
       location: "Dhaka, Bangladesh",
       link: "https://brainstation-23.com/",
     },
     {
       position: "Frontend Developer",
       company: "Dast Inc.",
-      date: "Dec 2020 - Jun 2021",
+      date: "15/12/2020 - 01/06/2021",
       location: "Texas, USA (Remote)",
     },
   ],
@@ -288,14 +298,20 @@ export const portfolioData: PortfolioData = {
   sections: [
     { id: "about", title: "About", enabled: true, order: 1 },
     { id: "news", title: "Recent News", enabled: true, order: 2 },
-    { id: "education", title: "Education", enabled: true, order: 3 },
-    { id: "testScores", title: "Test Scores", enabled: true, order: 4 },
-    { id: "experience", title: "Experience", enabled: true, order: 5 },
-    { id: "volunteer", title: "Volunteer Experience", enabled: true, order: 6 },
-    { id: "research", title: "Research Interests", enabled: true, order: 7 },
-    { id: "publications", title: "Publications", enabled: true, order: 8 },
-    { id: "awards", title: "Awards & Honors", enabled: true, order: 9 },
-    { id: "contact", title: "Contact", enabled: true, order: 10 },
+    {
+      id: "competitions",
+      title: "Competitions & Achievements",
+      enabled: true,
+      order: 3,
+    },
+    { id: "education", title: "Education", enabled: true, order: 4 },
+    { id: "testScores", title: "Test Scores", enabled: true, order: 5 },
+    { id: "experience", title: "Experience", enabled: true, order: 6 },
+    { id: "volunteer", title: "Volunteer Experience", enabled: true, order: 7 },
+    { id: "research", title: "Research Interests", enabled: true, order: 8 },
+    { id: "publications", title: "Publications", enabled: true, order: 9 },
+    { id: "awards", title: "Awards & Honors", enabled: true, order: 10 },
+    { id: "contact", title: "Contact", enabled: true, order: 11 },
   ],
 };
 
@@ -331,6 +347,101 @@ export const utils = {
   // Get current year for footer
   getCurrentYear: () => new Date().getFullYear(),
 
+  // Parse DD/MM/YYYY format to Date object
+  parseDate: (dateString: string): Date => {
+    if (dateString.toLowerCase() === "present") {
+      return new Date();
+    }
+    const [day, month, year] = dateString.split("/").map(Number);
+    return new Date(year, month - 1, day);
+  },
+
+  // Convert Date to short format (e.g., "Jun 2024")
+  formatShortDate: (date: Date): string => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+  },
+
+  // Convert DD/MM/YYYY to short format
+  formatDateFromString: (dateString: string): string => {
+    if (dateString.toLowerCase() === "present") {
+      return "Present";
+    }
+    return utils.formatShortDate(utils.parseDate(dateString));
+  },
+
+  // Calculate duration between two dates in LinkedIn format (e.g., "1 yr 5 mos")
+  calculateDuration: (startDate: string, endDate: string): string => {
+    const start = utils.parseDate(startDate);
+    const end =
+      endDate.toLowerCase() === "present"
+        ? new Date()
+        : utils.parseDate(endDate);
+
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    // If the end day is before the start day, subtract a month
+    if (end.getDate() < start.getDate()) {
+      months--;
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+    }
+
+    months++;
+    if (months >= 12) {
+      years++;
+      months -= 12;
+    }
+
+    const parts = [];
+    if (years > 0) {
+      parts.push(`${years} yr${years !== 1 ? "s" : ""}`);
+    }
+    if (months > 0) {
+      parts.push(`${months} mo${months !== 1 ? "s" : ""}`);
+    }
+
+    return parts.length > 0 ? parts.join(" ") : "1 mo";
+  },
+
+  // Format experience date range with duration
+  formatExperienceDateRange: (dateRange: string): string => {
+    const [startDateStr, endDateStr] = dateRange.split(" - ");
+    const formattedStart = utils.formatDateFromString(startDateStr);
+    const formattedEnd = utils.formatDateFromString(endDateStr);
+    const duration = utils.calculateDuration(startDateStr, endDateStr);
+
+    return `${formattedStart} - ${formattedEnd} (${duration})`;
+  },
+
+  // Get formatted experience data with computed display dates
+  getFormattedExperiences: () =>
+    portfolioData.experience.map((exp) => ({
+      ...exp,
+      formattedDate: utils.formatExperienceDateRange(exp.date),
+    })),
+
   // Validate required fields (useful for development)
   validateData: () => {
     const errors: string[] = [];
@@ -349,6 +460,7 @@ export const {
   publications,
   contact,
   news,
+  competitions,
   experience,
   volunteer,
   testScores,

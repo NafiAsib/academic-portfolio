@@ -2,6 +2,7 @@ import {
   Education,
   Publications,
   RecentNews,
+  Competitions,
   Experience,
   Header,
   Hero,
@@ -12,6 +13,7 @@ import {
   education,
   contact,
   news,
+  competitions,
   experience,
   testScores,
   utils,
@@ -26,6 +28,9 @@ function App() {
         <div className="max-w-4xl mx-auto px-5">
           <div id="news">
             <RecentNews news={news} />
+          </div>
+          <div id="competitions">
+            <Competitions competitions={competitions} />
           </div>
           <div id="publications">
             <Publications publications={utils.getPublicationsByYear()} />
