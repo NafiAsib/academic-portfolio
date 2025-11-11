@@ -5,6 +5,7 @@ import {
   Experience,
   Header,
   Hero,
+  TestScores,
 } from "./components";
 import {
   personal,
@@ -12,6 +13,7 @@ import {
   contact,
   news,
   experience,
+  testScores,
   utils,
 } from "./data/portfolioData";
 
@@ -32,6 +34,9 @@ function App() {
             <Experience experience={experience} />
           </div>
           <Education education={education} />
+          <div id="test-scores">
+            <TestScores testScores={testScores} />
+          </div>
         </div>
       </main>
 

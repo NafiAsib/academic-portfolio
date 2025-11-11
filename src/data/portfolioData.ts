@@ -67,6 +67,20 @@ export interface VolunteerItem {
   achievements?: string[];
 }
 
+export interface TestScore {
+  name: string;
+  score: string;
+  components?: {
+    listening?: string;
+    reading?: string;
+    writing?: string;
+    speaking?: string;
+  };
+  type?: string;
+  cefrLevel?: string;
+  description?: string;
+}
+
 export interface SectionConfig {
   id: string;
   title: string;
@@ -83,6 +97,7 @@ export interface PortfolioData {
   news: NewsItem[];
   experience: ExperienceItem[];
   volunteer: VolunteerItem[];
+  testScores: TestScore[];
   sections: SectionConfig[];
 }
 
@@ -149,7 +164,7 @@ export const portfolioData: PortfolioData = {
         "<a href='https://blp-workshop.github.io/' target='_blank' rel='noopener noreferrer'>In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL</a>",
       year: "2025",
       type: "workshop",
-      pdf: "https://example.com/paper1.pdf",
+      pdf: "http://arxiv.org/abs/2511.07382",
       code: "https://github.com/NafiAsib/Retriv-BLP25-Task-2",
     },
     {
@@ -160,7 +175,7 @@ export const portfolioData: PortfolioData = {
         "<a href='https://blp-workshop.github.io/' target='_blank' rel='noopener noreferrer'>In Bangla Language Processing(BLP) Workshop at IJCNLP-AACL</a>",
       year: "2025",
       type: "workshop",
-      pdf: "https://example.com/paper2.pdf",
+      pdf: "http://arxiv.org/abs/2511.07304",
       code: "https://github.com/sahasourav17/Retriv-BLP25-Task-1",
     },
     {
@@ -236,6 +251,22 @@ export const portfolioData: PortfolioData = {
     },
   ],
 
+  testScores: [
+    {
+      name: "IELTS",
+      score: "8.0",
+      components: {
+        listening: "9.0",
+        reading: "9.0",
+        writing: "6.5",
+        speaking: "7.0",
+      },
+      type: "Academic",
+      cefrLevel: "C1",
+      description: "Advanced/Proficient User",
+    },
+  ],
+
   volunteer: [
     {
       role: "Development Co-ordinator",
@@ -258,12 +289,13 @@ export const portfolioData: PortfolioData = {
     { id: "about", title: "About", enabled: true, order: 1 },
     { id: "news", title: "Recent News", enabled: true, order: 2 },
     { id: "education", title: "Education", enabled: true, order: 3 },
-    { id: "experience", title: "Experience", enabled: true, order: 4 },
-    { id: "volunteer", title: "Volunteer Experience", enabled: true, order: 5 },
-    { id: "research", title: "Research Interests", enabled: true, order: 6 },
-    { id: "publications", title: "Publications", enabled: true, order: 7 },
-    { id: "awards", title: "Awards & Honors", enabled: true, order: 8 },
-    { id: "contact", title: "Contact", enabled: true, order: 9 },
+    { id: "testScores", title: "Test Scores", enabled: true, order: 4 },
+    { id: "experience", title: "Experience", enabled: true, order: 5 },
+    { id: "volunteer", title: "Volunteer Experience", enabled: true, order: 6 },
+    { id: "research", title: "Research Interests", enabled: true, order: 7 },
+    { id: "publications", title: "Publications", enabled: true, order: 8 },
+    { id: "awards", title: "Awards & Honors", enabled: true, order: 9 },
+    { id: "contact", title: "Contact", enabled: true, order: 10 },
   ],
 };
 
@@ -319,5 +351,6 @@ export const {
   news,
   experience,
   volunteer,
+  testScores,
   sections,
 } = portfolioData;

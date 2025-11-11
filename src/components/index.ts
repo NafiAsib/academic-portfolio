@@ -8,4 +8,5 @@ export { default as Awards } from "./awards";
 export { default as Contact } from "./contact";
 export { default as ResearchInterests } from "./research-interests";
 export { default as SocialLinks } from "./social-links";
+export { default as TestScores } from "./test-scores";
 export { default as VolunteerExperiences } from "./volunteer-experiences";
