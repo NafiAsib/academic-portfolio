@@ -200,7 +200,7 @@ export const portfolioData: PortfolioData = {
     office: "Available for virtual meetings",
     address: "Dhaka, Bangladesh (Available for relocation)",
     linkedin: "linkedin.com/in/nafiasib",
-    scholar: "https://scholar.google.com/citations?user=FeFZfGEAAAAJ&hl=en",
+    scholar: "scholar.google.com/citations?user=FeFZfGEAAAAJ&hl=en",
     github: "github.com/NafiAsib",
     twitter: "twitter.com/nafiasib",
   },
