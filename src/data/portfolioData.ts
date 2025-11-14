@@ -198,9 +198,9 @@ export const portfolioData: PortfolioData = {
   contact: {
     email: "nafi.asib@gmail.com",
     office: "Available for virtual meetings",
-    address: "City, Country (Available for relocation)",
+    address: "Dhaka, Bangladesh (Available for relocation)",
     linkedin: "linkedin.com/in/nafiasib",
-    // scholar: "scholar.google.com/citations?user=nafiasib",
+    scholar: "https://scholar.google.com/citations?user=FeFZfGEAAAAJ&hl=en",
     github: "github.com/NafiAsib",
     twitter: "twitter.com/nafiasib",
   },
